@@ -19,15 +19,21 @@
 
     <script>
         function controlLed(color) {
-            // Cambia la URL por la que te proporcione ngrok o tu IP pública
-            fetch(`https://7d96-2800-810-52a-8532-4d4-d99c-3bfb-58bc.ngrok-free.app/api/led/${color}`)
-                .then(response => response.text())
+            console.log(`Enviando petición para el color: ${color}`);
+            fetch(`/api/led/${color}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.text();
+                })
                 .then(data => {
-                    console.log(data);
+                    console.log(`Respuesta del servidor: ${data}`);
                 })
                 .catch(error => console.error('Error:', error));
         }
     </script>
+
 </body>
 
 </html>
