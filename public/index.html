@@ -19,20 +19,15 @@
 
     <script>
         function controlLed(color) {
-            console.log(`Enviando petición para el color: ${color}`);
-            fetch(`/api/led/${color}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                    return response.text();
-                })
+            fetch(`https://98f9-2800-810-52a-dc0-3c22-def0-1f7e-2b20.ngrok-free.app/api/led/${color}`)
+                .then(response => response.text())
                 .then(data => {
-                    console.log(`Respuesta del servidor: ${data}`);
+                    console.log(data);
                 })
                 .catch(error => console.error('Error:', error));
         }
     </script>
+
 
 </body>
 
